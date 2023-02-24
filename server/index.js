@@ -16,7 +16,7 @@ app.use(morgan('common'));
 app.use(cors());
 
 app.use(function (req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Origin", "https://social-media-client-liart.vercel.app/");
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Max-Age", "1800");
     res.setHeader("Access-Control-Allow-Headers", "content-type");
