@@ -23,7 +23,7 @@ function Messenger() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://social-media-socket.vercel.app/");
+    socket.current = io("https://social-media-socket.vercel.app/");
     socket.current?.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
