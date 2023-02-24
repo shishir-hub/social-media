@@ -1,0 +1,84 @@
+.back{
+    max-width: 100vw;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 100;
+}
+
+.edit{
+    max-height: calc(100vw - 80px);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.editWrapper{
+    background-color: rgb(230, 230, 230);
+    padding: 20px 30px;
+    border-radius: 10px;
+}
+
+.editInputs{
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 75px);
+    overflow: auto;
+    padding: 0 20px;
+}
+
+.editInput{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.editInput input, .editInput select{
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+}
+
+.editInput input:focus{
+    outline: none;
+}
+
+.editIcon{
+    margin-right: 5px;
+}
+
+.editLabel{
+    width: fit-content;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.editButtons{
+    display: flex;
+    justify-content: center;
+}
+
+.editImageContainer{
+    position: relative;
+    width: fit-content;
+}
+
+.removeImg{
+    position: absolute;
+    color: red;
+    cursor: pointer;
+    right: 5px;
+    top: -8px;
+}
+
+.showImage{
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    object-fit: contain;
+}
