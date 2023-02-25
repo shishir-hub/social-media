@@ -27,8 +27,7 @@ app.use(function (req, res, next) {
 const httpServer = require('http').createServer(app);
 const options = {
     cors: {
-        origin: "*",
-        methods: ["GET", "POST"]
+        origin: "*"
     }
 };
 const io = require('socket.io')(httpServer, options);
