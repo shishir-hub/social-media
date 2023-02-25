@@ -25,11 +25,7 @@ app.use(function (req, res, next) {
 });
 
 const httpServer = require('https').createServer(app);
-const options = {
-    cors: {
-        origin: "*"
-    }
-};
+const options = {};
 const io = require('socket.io')(httpServer, options);
 
 
@@ -123,6 +119,10 @@ io.on("connection", (socket) => {
     })
 })
 
+
+httpServer.prependListener("request", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+});
 
 
 
