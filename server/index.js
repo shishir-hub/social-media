@@ -27,7 +27,7 @@ app.use(function (req, res, next) {
 const httpServer = require('https').createServer(app);
 const options = {
     cors: {
-        origin: "*",
+        origin: "https://social-media-client-liart.vercel.app/",
         methods: ["GET", "POST"]
     }
 };
