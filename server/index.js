@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 
-// const helmet = require('helmet');
-// const morgan = require('morgan');
+const helmet = require('helmet');
+const morgan = require('morgan');
 const cors = require('cors');
 
 require('dotenv').config();
@@ -11,8 +11,8 @@ require('./config/database');
 
 // middleware
 app.use(express.json());
-// app.use(helmet());
-// app.use(morgan('common'));
+app.use(helmet());
+app.use(morgan('common'));
 app.use(cors());
 
 app.use(function (req, res, next) {
@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-const httpServer = require('http').createServer(app);
+const httpServer = require('https').createServer(app);
 const options = {
     cors: {
         origin: "*",
