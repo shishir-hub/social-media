@@ -55,6 +55,7 @@ function Share({ isPostAdded, setIsPostAdded }) {
             className="shareProfileImg"
           />
           <input
+            required
             type="text"
             placeholder={`${user?.username}, What's on your mind?`}
             className="shareInput"
