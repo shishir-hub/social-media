@@ -4,6 +4,7 @@ const app = express();
 // const helmet = require('helmet');
 // const morgan = require('morgan');
 const cors = require('cors');
+const httpServer = require('http').createServer(app);
 
 require('dotenv').config();
 
@@ -23,17 +24,6 @@ app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS");
     next();
 });
-
-const httpServer = require('http').createServer(app);
-const options = {
-    allowEIO3: true,
-    cors: {
-        origin: true,
-        credentials: true
-    },
-};
-const ios = require('socket.io');
-const io = new ios.Server(httpServer, options);
 
 
 app.get('/', (req, res) => {
@@ -85,6 +75,16 @@ app.use((err, req, res, next) => {
 
 
 //socket io part 
+
+const options = {
+    allowEIO3: true,
+    cors: {
+        origin: true,
+        credentials: true
+    },
+};
+const ios = require('socket.io');
+const io = new ios.Server(httpServer, options);
 
 let users = [];
 

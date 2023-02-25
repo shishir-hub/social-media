@@ -10,12 +10,23 @@ router.post('/', authenticate, async (req, res, next) => {
         members: [req.body.senderId, req.body.receiverId],
     })
     try {
-        const savedConversation = await newConversation.save();
-
-        res.send({
-            msg: 'conversation created',
-            data: savedConversation,
+        const conversation = await Conversation.findOne({
+            members: { $all: [req.body.senderId, req.body.receiverId] },
         })
+        if (conversation) {
+            res.send({
+                msg: 'old',
+                data: conversation,
+            })
+        }
+        else {
+            const savedConversation = await newConversation.save();
+
+            res.send({
+                msg: 'new',
+                data: savedConversation,
+            })
+        }
     } catch (error) {
         next(error);
     }
