@@ -25,8 +25,15 @@ app.use(function (req, res, next) {
 });
 
 const httpServer = require('http').createServer(app);
-const options = {};
-const io = require('socket.io')(httpServer, options);
+const options = {
+    allowEIO3: true,
+    cors: {
+        origin: true,
+        credentials: true
+    },
+};
+const ios = require('socket.io');
+const io = new ios.Server(httpServer, options);
 
 
 app.get('/', (req, res) => {
