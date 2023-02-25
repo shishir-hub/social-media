@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-const httpServer = require('http').createServer(app);
+const httpServer = require('https').createServer(app);
 const options = {
     cors: {
         origin: "*"
