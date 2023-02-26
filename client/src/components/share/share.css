@@ -48,6 +48,7 @@
 .shareOption{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-left: 15px;
     cursor: pointer;
 }
@@ -82,4 +83,19 @@
 }
 .shareCancelImg:hover{
     color: red;
+}
+
+@media only screen and (max-width: 800px){
+    .shareBottom{
+        flex-direction: column;
+    }
+    .shareOptionText{
+        display: none;
+    }
+    .shareButton{
+        margin-top: 15px;
+    }
+    .shareOptions{
+        width: 90%;
+    }
 }

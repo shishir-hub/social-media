@@ -77,3 +77,20 @@
     border-bottom: 1px dashed grey;
     font-size: 15px;
 }
+
+@media only screen and (max-width: 800px){
+    .postDetails{
+        display: flex;
+        flex-direction: column;
+    }
+    .postDate{
+        padding:0 10px;
+    }
+    .postBottom{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .postBottomRight{
+        margin-top: 10px;
+    }
+}

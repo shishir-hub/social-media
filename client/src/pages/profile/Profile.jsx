@@ -13,6 +13,7 @@ function Profile() {
   const [user, setUser] = useState({});
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [rightbarOpen, setRightbarOpen] = useState(false);
   const [editProfile, setEditProfile] = useState({
     isOpen: false,
     profile: {},
@@ -70,7 +71,23 @@ function Profile() {
           </div>
           <div className="profileRightBottom">
             <Feed userId={params.userId} />
-            <Rightbar profile={user} setEditProfile={setEditProfile} />
+            <i
+              onClick={() => {
+                setRightbarOpen(true);
+              }}
+              className="fa-solid fa-bars openRightBar"
+            ></i>
+            <div className={`rightContainer ${rightbarOpen ? "" : "inactive"}`}>
+              <div className="crossIconContainer">
+                <i
+                  onClick={() => {
+                    setRightbarOpen(false);
+                  }}
+                  className="fa-solid fa-xmark closeRightBar"
+                ></i>
+              </div>
+              <Rightbar profile={user} setEditProfile={setEditProfile} />
+            </div>
           </div>
         </div>
       </div>

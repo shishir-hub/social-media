@@ -48,8 +48,10 @@ function Post({ post }) {
                 className="postProfileImg"
               />
             </Link>
-            <span className="postUsername">{post?.posted_by?.username}</span>
-            <span className="postDate">{format(post?.createdAt)}</span>
+            <div className="postDetails">
+              <span className="postUsername">{post?.posted_by?.username}</span>
+              <span className="postDate">{format(post?.createdAt)}</span>
+            </div>
           </div>
           <div className="postTopRight">
             <i className="fa-solid fa-ellipsis-vertical"></i>
@@ -73,10 +75,12 @@ function Post({ post }) {
               src="/assests/heart.png"
               alt=""
             />
-            <span className="postLikeCounter">{like} people like it</span>
+            <span className="postLikeCounter">{like} likes</span>
           </div>
           <div className="postBottomRight">
-            <span className="postCommentText">{post?.comment} comments</span>
+            <span className="postCommentText">
+              {post?.comment?.length || 0} comments
+            </span>
           </div>
         </div>
       </div>

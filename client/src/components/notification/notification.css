@@ -1,0 +1,44 @@
+.notificationContainer{
+    width: 100%;
+    position: relative;
+}
+
+.notificationWrapper{
+    padding: 20px;
+    position: fixed;
+    top:53px;
+    background-color: rgb(215, 215, 215);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    border-radius: 10px;
+}
+
+.notifications{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.notification{
+    margin-top: 10px;
+}
+
+.closeNotificationComponent{
+    position: absolute;
+    right:-10px;
+    top:-12px;
+    color: black;
+    cursor: pointer;
+}
+
+.closeNotificationComponent:hover{
+    color: red;
+}
+
+@media only screen and (max-width: 800px){
+    .notificationWrapper{
+        right: 70px;
+    }
+}

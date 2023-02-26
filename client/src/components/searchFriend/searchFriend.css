@@ -1,0 +1,59 @@
+.searchFriend{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.searchWrapper{
+    padding: 20px;
+    position: fixed;
+    top:53px;
+    background-color: rgb(215, 215, 215);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    border-radius: 10px;
+}
+
+.foundFriends{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.foundFriend{
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.friendImg{
+    height: 32px;
+    width: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.friendName{
+    margin-left: 10px;
+}
+
+.closeSearchComponent{
+    position: absolute;
+    right: -10px;
+    top: -13px;
+    cursor: pointer;
+}
+
+.closeSearchComponent:hover{
+    color: red;
+}
+
+@media only screen and (max-width: 800px){
+    .searchWrapper{
+        top: 122px;
+    }
+}

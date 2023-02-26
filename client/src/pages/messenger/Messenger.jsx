@@ -2,14 +2,16 @@ import { CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
+import { SocialMediaContext } from "../../App";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
 import Conversation from "../../components/conversations/Conversation";
+import Leftbar from "../../components/leftbar/Leftbar";
 import Message from "../../components/message/Message";
 import { AuthContext } from "../../context/AuthContext";
 import "./messenger.css";
 
 function Messenger() {
-  const [conversations, setConversations] = useState();
+  const { conversations, setConversations } = useContext(SocialMediaContext);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setnewMessage] = useState();
@@ -17,6 +19,7 @@ function Messenger() {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { user } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [showChatMenu, setShowChatMenu] = useState(true);
   const [messageIsLoading, setMessageIsLoading] = useState(false);
 
   const scrollRef = useRef();
@@ -71,7 +74,7 @@ function Messenger() {
         });
     };
     getConversations();
-  }, [user?._id]);
+  }, [user?._id, setConversations]);
 
   useEffect(() => {
     const getMessages = async () => {
@@ -137,8 +140,25 @@ function Messenger() {
 
   return (
     <div className="messenger">
-      <div className="chatMenu">
+      <div className="leftbarContainer">
+        <Leftbar />
+      </div>
+      <i
+        onClick={() => {
+          setShowChatMenu(true);
+        }}
+        className="fa-solid fa-bars openChatMenu"
+      ></i>
+      <div className={`chatMenu ${showChatMenu ? "" : "inactive"}`}>
         <div className="chatMenuWrapper">
+          <div className="crossIconContainer">
+            <i
+              onClick={() => {
+                setShowChatMenu(false);
+              }}
+              className="fa-solid fa-xmark closeRightBar"
+            ></i>
+          </div>
           <input
             type="text"
             placeholder="Search For Friends"

@@ -3,15 +3,25 @@ import "./rightbar.css";
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { CircularProgress } from "@material-ui/core";
+import { SocialMediaContext } from "../../App";
 
 function Rightbar({ profile, setEditProfile }) {
+  const { conversations, setConversations } = useContext(SocialMediaContext);
+  const { user } = useContext(AuthContext);
   const params = useParams();
   const [friends, setFriends] = useState();
+  const [followed, setFollowed] = useState();
+  const navigate = useNavigate();
 
-  const { user } = useContext(AuthContext);
+  useEffect(() => {
+    setFollowed(
+      profile?.followers?.filter((f) => f === user?._id)[0] ? true : false
+    );
+  }, [profile, user]);
+
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     if (profile) {
@@ -51,11 +61,47 @@ function Rightbar({ profile, setEditProfile }) {
       .then((res) => {
         console.log(res.data.msg);
         setIsLoading(false);
+        setFollowed(true);
       })
       .catch((err) => {
         console.log(err.response.data.msg);
         setIsLoading(false);
       });
+  };
+
+  const handleOpenMessage = () => {
+    const createOrgetConversation = async () => {
+      let conversation = {
+        senderId: user._id,
+        receiverId: profile._id,
+      };
+
+      await axios
+        .post(
+          `${process.env.REACT_APP_SERVER_DOMAIN}/conversation`,
+          conversation,
+          {
+            headers: {
+              Authorization: `Bearer ${JSON.parse(
+                localStorage.getItem("token")
+              )}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          res.data.msg === "new"
+            ? conversations
+              ? setConversations([...conversations, res.data.data])
+              : setConversations([res.data.data])
+            : setConversations([...conversations]);
+          navigate("/messenger");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    createOrgetConversation();
   };
 
   const handleUnfollow = () => {
@@ -76,6 +122,7 @@ function Rightbar({ profile, setEditProfile }) {
       .then((res) => {
         console.log(res.data.msg);
         setIsLoading(false);
+        setFollowed(false);
       })
       .catch((err) => {
         console.log(err.response.data.msg);
@@ -108,7 +155,7 @@ function Rightbar({ profile, setEditProfile }) {
       <>
         {params.userId !== user?._id ? (
           <>
-            {profile?.followers?.includes(user?._id) ? (
+            {followed ? (
               <button
                 disabled={isLoading}
                 onClick={handleUnfollow}
@@ -133,6 +180,9 @@ function Rightbar({ profile, setEditProfile }) {
                 )}
               </button>
             )}
+            <button onClick={handleOpenMessage} className="btn btn-secondary">
+              Message
+            </button>
           </>
         ) : (
           <>

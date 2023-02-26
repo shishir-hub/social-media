@@ -1,0 +1,38 @@
+.firendRequest{
+    width: 100%;
+    position: relative;
+}
+
+.friendRequestWrapper{
+    padding: 20px;
+    position: fixed;
+    top:53px;
+    background-color: rgb(215, 215, 215);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    border-radius: 10px;
+}
+
+.friends{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.friend{
+    margin-top: 10px;
+}
+
+.closeRequestComponent{
+    position: absolute;
+    right:-10px;
+    top:-12px;
+    color: black;
+    cursor: pointer;
+}
+
+.closeRequestComponent:hover{
+    color: red;
+}

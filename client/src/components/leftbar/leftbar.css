@@ -31,6 +31,11 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    color: black;
+}
+
+.leftbarListItem.active{
+    color: var(--main-color);
 }
 
 .leftbarIcon{
@@ -53,3 +58,36 @@
     padding: 0;
     list-style: none;
 }
+
+.hide{
+    display: none;
+}
+
+.upDownIcon{
+    display: none;
+}
+
+@media only screen and (max-width: 800px) {
+    .leftbar{
+        flex: 1;
+    }
+    .leftbarIcon{
+        font-size: 20px;
+        margin: 0;
+    }
+    .leftbarListItemText{
+        display: none;
+    }
+    .leftbarButton.mobile{
+        display: none;
+    }
+    .leftbarWrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .upDownIcon{
+        display: block;
+    }
+  }
