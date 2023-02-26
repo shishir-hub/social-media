@@ -140,15 +140,15 @@ function Messenger() {
 
   return (
     <div className="messenger">
-      <div className="leftbarContainer">
-        <Leftbar />
-      </div>
       <i
         onClick={() => {
           setShowChatMenu(true);
         }}
         className="fa-solid fa-bars openChatMenu"
       ></i>
+      <div className="leftbarContainer">
+        <Leftbar />
+      </div>
       <div className={`chatMenu ${showChatMenu ? "" : "inactive"}`}>
         <div className="chatMenuWrapper">
           <div className="crossIconContainer">
@@ -156,7 +156,7 @@ function Messenger() {
               onClick={() => {
                 setShowChatMenu(false);
               }}
-              className="fa-solid fa-xmark closeRightBar"
+              className="fa-solid fa-xmark closeMessengerBar"
             ></i>
           </div>
           <input

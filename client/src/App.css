@@ -4,6 +4,9 @@
   --third-color: #A5ABB0;
   --third-dark: #c1f9ee;
 }
+*{
+  max-width: 100vw;
+}
 
 a{
   text-decoration: none;

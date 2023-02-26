@@ -90,6 +90,7 @@
     }
     .chatMenu.inactive{
         left: -1000px;
+        display: none;
     }
     .chatOnline{
         display: none;
@@ -101,9 +102,6 @@
         display: block;
         position: relative;
     }
-    .closeRightBar{
-        position: absolute;
-    }
     .openChatMenu{
         display: block;
         position: absolute;
@@ -114,12 +112,13 @@
         background-color: var(--main-color);
         color: white;
         border-radius: 50%;
+        z-index: 100;
     }
     .openChatMenu:hover{
         cursor: pointer;
         background-color: navy;
     }
-    .closeRightBar{
+    .closeMessengerBar{
         font-size: 20px;
         position: absolute;
         top: -15px;
