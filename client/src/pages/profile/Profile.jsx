@@ -1,7 +1,8 @@
 import { CircularProgress } from "@material-ui/core";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { SocialMediaContext } from "../../App";
 import EditProfile from "../../components/editProfile/EditProfile";
 import Feed from "../../components/feed/Feed";
 import Leftbar from "../../components/leftbar/Leftbar";
@@ -10,10 +11,10 @@ import "./profile.css";
 
 function Profile() {
   const params = useParams();
+  const { rightbarOpen, setRightbarOpen } = useContext(SocialMediaContext);
   const [user, setUser] = useState({});
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [rightbarOpen, setRightbarOpen] = useState(false);
   const [editProfile, setEditProfile] = useState({
     isOpen: false,
     profile: {},
@@ -71,12 +72,6 @@ function Profile() {
           </div>
           <div className="profileRightBottom">
             <Feed userId={params.userId} />
-            <i
-              onClick={() => {
-                setRightbarOpen(true);
-              }}
-              className="fa-solid fa-bars openRightBar"
-            ></i>
             <div className={`rightContainer ${rightbarOpen ? "" : "inactive"}`}>
               <div className="crossIconContainer">
                 <i

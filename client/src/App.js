@@ -22,6 +22,8 @@ function App() {
   const [searchUsers, setSearchUsers] = useState();
   const [conversations, setConversations] = useState();
   const [allUsers, setAllUsers] = useState();
+  const [rightbarOpen, setRightbarOpen] = useState(false);
+  const [showChatMenu, setShowChatMenu] = useState(true);
 
 
   useEffect(() => {
@@ -70,6 +72,8 @@ function App() {
         searchUsers, setSearchUsers,
         conversations, setConversations,
         allUsers, setAllUsers,
+        rightbarOpen, setRightbarOpen,
+        showChatMenu, setShowChatMenu
       }}> <BrowserRouter>
           {user || tokenExists ? <Navbar isLoading={isFetching} /> : null}
           <Routes>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -11,7 +11,8 @@ import Notification from "../notification/Notification";
 
 function Navbar({ isLoading }) {
   const { user } = useContext(AuthContext);
-  const { setSearchTerm } = useContext(SocialMediaContext);
+  const { setSearchTerm, setRightbarOpen, setShowChatMenu } =
+    useContext(SocialMediaContext);
   const [searchComponent, setSearchComponent] = useState({
     isOpen: false,
   });
@@ -47,6 +48,7 @@ function Navbar({ isLoading }) {
   };
 
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <>
       <div className="navbar">
@@ -196,6 +198,14 @@ function Navbar({ isLoading }) {
       </div>
 
       <div className="searchMobile">
+        <i
+          onClick={() => {
+            setShowChatMenu(true);
+          }}
+          className={`fa-solid fa-bars openChatMenu ${
+            location.pathname === "/messenger" ? "" : "inactive"
+          }`}
+        ></i>
         <div className="navbarCenterMobile">
           <SearchFriend
             searchComponent={searchComponent}
@@ -228,6 +238,14 @@ function Navbar({ isLoading }) {
             ) : null}
           </div>
         </div>
+        <i
+          onClick={() => {
+            setRightbarOpen(true);
+          }}
+          className={`fa-solid fa-bars openRightBar ${
+            location.pathname !== "/messenger" ? "" : "inactive"
+          }`}
+        ></i>
       </div>
     </>
   );

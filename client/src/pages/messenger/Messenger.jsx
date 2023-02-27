@@ -11,7 +11,8 @@ import { AuthContext } from "../../context/AuthContext";
 import "./messenger.css";
 
 function Messenger() {
-  const { conversations, setConversations } = useContext(SocialMediaContext);
+  const { conversations, setConversations, showChatMenu, setShowChatMenu } =
+    useContext(SocialMediaContext);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setnewMessage] = useState();
@@ -19,7 +20,6 @@ function Messenger() {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { user } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [showChatMenu, setShowChatMenu] = useState(true);
   const [messageIsLoading, setMessageIsLoading] = useState(false);
 
   const scrollRef = useRef();
@@ -141,12 +141,6 @@ function Messenger() {
   return (
     <>
       <div className="messenger">
-        <i
-          onClick={() => {
-            setShowChatMenu(true);
-          }}
-          className="fa-solid fa-bars openChatMenu"
-        ></i>
         <div className="leftbarContainer">
           <Leftbar />
         </div>

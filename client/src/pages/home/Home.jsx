@@ -1,22 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { SocialMediaContext } from "../../App";
 import Feed from "../../components/feed/Feed";
 import Leftbar from "../../components/leftbar/Leftbar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import "./home.css";
 
 function Home() {
-  const [rightbarOpen, setRightbarOpen] = useState(false);
+  const { rightbarOpen, setRightbarOpen } = useContext(SocialMediaContext);
   return (
     <>
       <div className="homeContainer">
         <Leftbar />
         <Feed />
-        <i
-          onClick={() => {
-            setRightbarOpen(true);
-          }}
-          className="fa-solid fa-bars openRightBar"
-        ></i>
         <div className={`rightContainer ${rightbarOpen ? "" : "inactive"}`}>
           <div className="crossIconContainer">
             <i

@@ -17,9 +17,6 @@
 .crossIconContainer{
     display: none;
 }
-.openRightBar{
-    display: none;
-}
 
 @media only screen and (max-width: 800px){
     .homeContainer{
@@ -28,7 +25,7 @@
     .rightContainer{
         position: absolute;
         width: 75%;
-        top: -130px;
+        top: -150px;
         right: 0;
         z-index: 200;
         background-color: rgb(234, 234, 234);
@@ -51,22 +48,6 @@
         font-size: 20px;
         top:-10px;
         right: 20px;
-    }
-    .openRightBar{
-        display: block;
-        position: absolute;
-        right: 10px;
-        top: -40px;
-        font-size: 20px;
-        padding: 5px 7px;
-        background-color: var(--main-color);
-        color: white;
-        border-radius: 50%;
-        z-index: 50;
-    }
-    .openRightBar:hover{
-        cursor: pointer;
-        background-color: navy;
     }
     .closeRightBar{
         font-size: 20px;
