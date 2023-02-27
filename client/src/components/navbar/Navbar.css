@@ -145,6 +145,9 @@
         flex-direction: column;
         justify-content: center;
     }
+    .socialapplogoNavbar{
+        height:80px;
+    }
     .navbarCenter{
         display: none;
     }

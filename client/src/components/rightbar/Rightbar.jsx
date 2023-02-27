@@ -10,7 +10,7 @@ import { SocialMediaContext } from "../../App";
 
 function Rightbar({ profile, setEditProfile }) {
   const { conversations, setConversations } = useContext(SocialMediaContext);
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
   const params = useParams();
   const [friends, setFriends] = useState();
   const [followed, setFollowed] = useState();
@@ -130,6 +130,12 @@ function Rightbar({ profile, setEditProfile }) {
       });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  };
+
   const HomeRightBar = () => {
     return (
       <>
@@ -196,6 +202,9 @@ function Rightbar({ profile, setEditProfile }) {
               className="btn btn-secondary mx-3 my-3"
             >
               Edit Profile
+            </button>
+            <button onClick={handleLogout} className="btn btn-danger">
+              Logout
             </button>
           </>
         )}
