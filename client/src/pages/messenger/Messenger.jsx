@@ -139,123 +139,125 @@ function Messenger() {
   }, [messages]);
 
   return (
-    <div className="messenger">
-      <i
-        onClick={() => {
-          setShowChatMenu(true);
-        }}
-        className="fa-solid fa-bars openChatMenu"
-      ></i>
-      <div className="leftbarContainer">
-        <Leftbar />
-      </div>
-      <div className={`chatMenu ${showChatMenu ? "" : "inactive"}`}>
-        <div className="chatMenuWrapper">
-          <div className="crossIconContainer">
-            <i
-              onClick={() => {
-                setShowChatMenu(false);
-              }}
-              className="fa-solid fa-xmark closeMessengerBar"
-            ></i>
-          </div>
-          <input
-            type="text"
-            placeholder="Search For Friends"
-            className="chatMenuInput"
-          />
-          {conversations ? (
-            isLoading ? (
-              <CircularProgress />
-            ) : (
-              conversations?.map((c, i) => {
-                return (
-                  <div
-                    onClick={() => {
-                      setCurrentChat(c);
-                    }}
-                    key={i}
-                  >
-                    <Conversation
-                      active={currentChat?._id === c?._id ? "active" : ""}
-                      conversation={c}
-                      currentUser={user}
-                    />
-                  </div>
-                );
-              })
-            )
-          ) : (
-            <span
-              style={{
-                color: "grey",
-                fontSize: "20px",
-                textAlign: "center",
-                marginTop: "20px",
-                display: "block",
-              }}
-            >
-              Start conversation with your friends
-            </span>
-          )}
+    <>
+      <div className="messenger">
+        <i
+          onClick={() => {
+            setShowChatMenu(true);
+          }}
+          className="fa-solid fa-bars openChatMenu"
+        ></i>
+        <div className="leftbarContainer">
+          <Leftbar />
         </div>
-      </div>
-      <div className="chatBox">
-        <div className="chatBoxWrapper">
-          {currentChat ? (
-            <>
-              {messageIsLoading ? (
+        <div className={`chatMenu ${showChatMenu ? "" : "inactive"}`}>
+          <div className="chatMenuWrapper">
+            <div className="crossIconContainer">
+              <i
+                onClick={() => {
+                  setShowChatMenu(false);
+                }}
+                className="fa-solid fa-xmark closeMessengerBar"
+              ></i>
+            </div>
+            <input
+              type="text"
+              placeholder="Search For Friends"
+              className="chatMenuInput"
+            />
+            {conversations ? (
+              isLoading ? (
                 <CircularProgress />
               ) : (
-                <div className="chatBoxTop">
-                  {messages?.map((m, i) => {
-                    return (
-                      <div key={i} ref={scrollRef}>
-                        <Message
-                          own={m?.sender === user?._id ? "own" : ""}
-                          message={m}
-                        />
-                      </div>
-                    );
-                  })}
+                conversations?.map((c, i) => {
+                  return (
+                    <div
+                      onClick={() => {
+                        setCurrentChat(c);
+                      }}
+                      key={i}
+                    >
+                      <Conversation
+                        active={currentChat?._id === c?._id ? "active" : ""}
+                        conversation={c}
+                        currentUser={user}
+                      />
+                    </div>
+                  );
+                })
+              )
+            ) : (
+              <span
+                style={{
+                  color: "grey",
+                  fontSize: "20px",
+                  textAlign: "center",
+                  marginTop: "20px",
+                  display: "block",
+                }}
+              >
+                Start conversation with your friends
+              </span>
+            )}
+          </div>
+        </div>
+        <div className="chatBox">
+          <div className="chatBoxWrapper">
+            {currentChat ? (
+              <>
+                {messageIsLoading ? (
+                  <CircularProgress />
+                ) : (
+                  <div className="chatBoxTop">
+                    {messages?.map((m, i) => {
+                      return (
+                        <div key={i} ref={scrollRef}>
+                          <Message
+                            own={m?.sender === user?._id ? "own" : ""}
+                            message={m}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+                <div className="chatBoxBottom">
+                  <textarea
+                    name=""
+                    className="chatMessageInput"
+                    placeholder="Write something..."
+                    onChange={(e) => {
+                      setnewMessage(e.target.value);
+                    }}
+                    value={newMessage}
+                  ></textarea>
+                  <button
+                    disabled={messageIsLoading}
+                    onClick={handleSendMessage}
+                    className="btn btn-primary chatSubmitButton"
+                  >
+                    Send
+                  </button>
                 </div>
-              )}
-              <div className="chatBoxBottom">
-                <textarea
-                  name=""
-                  className="chatMessageInput"
-                  placeholder="Write something..."
-                  onChange={(e) => {
-                    setnewMessage(e.target.value);
-                  }}
-                  value={newMessage}
-                ></textarea>
-                <button
-                  disabled={messageIsLoading}
-                  onClick={handleSendMessage}
-                  className="btn btn-primary chatSubmitButton"
-                >
-                  Send
-                </button>
-              </div>
-            </>
-          ) : (
-            <span className="noConversationText">
-              Open a conversation to start to chat.
-            </span>
-          )}
+              </>
+            ) : (
+              <span className="noConversationText">
+                Open a conversation to start to chat.
+              </span>
+            )}
+          </div>
+        </div>
+        <div className="chatOnline">
+          <div className="chatOnlineWrapper">
+            <ChatOnline
+              onlineUsers={onlineUsers}
+              currentUserId={user?._id}
+              setCurrentChat={setCurrentChat}
+            />
+          </div>
         </div>
       </div>
-      <div className="chatOnline">
-        <div className="chatOnlineWrapper">
-          <ChatOnline
-            onlineUsers={onlineUsers}
-            currentUserId={user?._id}
-            setCurrentChat={setCurrentChat}
-          />
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 
