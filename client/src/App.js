@@ -17,7 +17,6 @@ export const SocialMediaContext = createContext();
 
 function App() {
   const { user, dispatch, isFetching } = useContext(AuthContext);
-  let tokenExists = JSON.parse(localStorage.getItem('token'));
   const [searchTerm, setSearchTerm] = useState();
   const [searchUsers, setSearchUsers] = useState();
   const [conversations, setConversations] = useState();
@@ -75,9 +74,9 @@ function App() {
         rightbarOpen, setRightbarOpen,
         showChatMenu, setShowChatMenu
       }}> <BrowserRouter>
-          {user || tokenExists ? <Navbar isLoading={isFetching} /> : null}
+          {user ? <Navbar isLoading={isFetching} /> : null}
           <Routes>
-            <Route exact path='/' element={tokenExists ? <Home /> : <Login />} />
+            <Route exact path='/' element={user ? <Home /> : <Login />} />
             <Route exact path='/profile/:userId' element={user ? <Profile /> : <Register />} />
             <Route exact path='/messenger' element={user ? <Messenger /> : <Login />} />
             <Route exact path='/login' element={user ? <Navigate to='/' /> : <Login />} />

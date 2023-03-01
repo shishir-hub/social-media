@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { SocialMediaContext } from "../../App";
 import Feed from "../../components/feed/Feed";
 import Leftbar from "../../components/leftbar/Leftbar";
