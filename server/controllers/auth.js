@@ -34,9 +34,12 @@ const login = async (req, res, next) => {
             if (valid) {
                 let user_obj = user_exists.toObject();
                 delete user_obj.password;
+                let data = { ...user_obj };
+                delete user_obj.coverPicture;
+                delete user_obj.profilePicture;
                 let token = jwt.sign(user_obj, process.env.JWT_SECRET);
                 res.send({
-                    data: user_obj,
+                    data: data,
                     token: token,
                     msg: "Login successful"
                 })

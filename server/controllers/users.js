@@ -11,9 +11,12 @@ const updateuser = async (req, res, next) => {
             const user = await User.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
             let user_obj = user.toObject();
             delete user_obj.password;
+            let data = { ...user_obj };
+            delete user_obj.coverPicture;
+            delete user_obj.profilePicture;
             let token = jwt.sign(user_obj, process.env.JWT_SECRET);
 
-            res.send({ msg: 'User updated', data: user_obj, token });
+            res.send({ msg: 'User updated', data: data, token });
         }
         else {
             res.status(403).send({ msg: 'You can only change your account' });
